@@ -1,55 +1,26 @@
-# Eksplorasi Anime
+# Aplikasi Eksplorasi Anime
 
-Proyek ini adalah aplikasi Android **Anime Explorer** yang dibuat menggunakan **Jetpack Compose** dan **Kotlin**. Aplikasi ini mengambil daftar dan detail anime dari [Tenrai API](https://api.tenrai.org/v1) dan menyajikannya dalam tampilan antarmuka berbahasa Indonesia yang modern dan interaktif.
+Aplikasi mobile sederhana yang dibangun untuk memenuhi tugas responsi. Aplikasi ini berfungsi untuk mencari dan menampilkan informasi anime secara dinamis dari REST API.
 
-## Fitur Utama
+## 📸 Screenshots
+*(Ganti URL gambar di bawah ini dengan link screenshot aplikasi kamu yang sudah diupload)*
+| Home Screen | Anime Detail Screen |
+|:---:|:---:|
+| ![Home](link-screenshot-home.png) | ![Detail](link-screenshot-detail.png) |
 
-*   **100% Jetpack Compose:** Tidak ada XML layout, seluruh UI dibangun secara deklaratif dengan Jetpack Compose dan Material Design 3.
-*   **Arsitektur MVVM Terstruktur:** Proyek dipisahkan secara rapi ke dalam tiga lapisan (Data, Domain/State, dan UI/Presentation) dengan *single source of truth*.
-*   **StateFlow & Coroutines:** Pembaruan UI dilakukan secara asinkron dengan Kotlin Coroutines, serta dikelola secara mulus (Loading, Sukses, Error) melalui StateFlow.
-*   **Navigation Compose:** Perpindahan navigasi yang mudah antara layar `HomeScreen` (Daftar) ke `AnimeDetailScreen` (Detail) menggunakan argumen string ID.
-*   **Fitur Spesifik Kotlin:** Implementasi keamanan *null* (*null-safety* seperti Elvis operator `?:`), Lambda expressions, dan Operasi Koleksi (`sortedByDescending`).
-*   **Retrofit Network Layer:** Proses HTTP *request* ditangani secara *clean* dengan Retrofit2 dan konversi Gson.
+## 🛠️ Penjelasan Teknis
 
-## Batasan (Sesuai Syarat Proyek Khusus)
-1.  **Tanpa Fitur Image/Gambar:** Aplikasi difokuskan pada manipulasi teks, sehingga tidak memakai *library loader* seperti Coil atau Glide.
-2.  **Tanpa Database (Room):** Data semata-mata bergantung dari pemanggilan API (RESTful).
-3.  **Tanpa Authentikasi (Login/Register).**
+Aplikasi ini dibangun sepenuhnya menggunakan **Kotlin** dan **Jetpack Compose** untuk antarmuka pengguna, menghindari penggunaan XML Layout.
 
-## Cara Menjalankan (Getting Started)
+### Arsitektur (MVVM)
+Aplikasi menerapkan arsitektur **MVVM (Model - View - ViewModel)** yang dibantu dengan pola **Repository**:
+*   **Model**: Menggunakan *Data Class* Kotlin untuk merepresentasikan struktur data dari API (Judul, Rating, Tahun, Episode) dengan *Null safety*.
+*   **Repository**: Bertanggung jawab sebagai sumber data tunggal (*Single Source of Truth*) yang melakukan pemanggilan jaringan (*networking*) ke API.
+*   **ViewModel**: Mengelola logika bisnis dan menjaga *State* (Loading, Success/Data, Error) agar tetap stabil saat terjadi perubahan konfigurasi. 
+*   **View**: UI dibangun dengan Compose (Material Design 3, Custom Theme & Typography) yang merespons perubahan *State* dari ViewModel. 
 
-1. Pastikan Anda telah memasang **Android Studio** versi terbaru (dengan dukungan SDK 34+).
-2. Lakukan clone pada repository ini:
-   ```bash
-   git clone https://github.com/Kairy-17/Praktikum-Pemmob-Responsi.git
-   ```
-3. Buka folder `AnimeExplorer` di Android Studio.
-4. Tunggu hingga proses Sinkronisasi Gradle selesai.
-5. Klik **Run** (Gigi berwarna hijau) untuk mencoba aplikasi pada *Emulator* ataupun perangkat fisik Android (minimal API 31).
-
-## Struktur Direktori
-
-```
-app/src/main/java/com/example/animeexplorer/
-├── data/
-│   ├── model/           # Data Class (Anime, API Responses)
-│   ├── remote/          # Retrofit Interfaces (AnimeApiService)
-│   └── repository/      # Repository Data (AnimeRepository)
-├── di/
-│   └── AppContainer     # Kustom Dependency Injection (Retrofit Factory)
-├── ui/
-│   ├── navigation/      # Rute Navigasi Compose (AppNavigation)
-│   ├── screens/         # Tampilan Komponen Compose (HomeScreen, DetailScreen)
-│   ├── state/           # Sealed Class untuk UI State (Loading, Success, Error)
-│   ├── theme/           # Konfigurasi Tema (Color, Typography Material 3)
-│   └── viewmodel/       # File ViewModel & Provider-nya
-└── MainActivity.kt      # Titik Awal (Entry point) Aplikasi
-```
-
-## Teknologi & Dependensi
-*   **Kotlin** (Versi 2.2.10)
-*   **Jetpack Compose BOM** (2026.02.01)
-*   **Retrofit 2** (2.11.0)
-*   **Navigation Compose** (2.8.5)
-*   **ViewModel Compose** (2.8.7)
-*   **Material Design 3**
+### Fitur Utama & Library
+*   **Networking**: Menggunakan Retrofit untuk melakukan HTTP GET request ke endpoint `https://api.tenrai.org/v1`.
+*   **Navigation**: Menggunakan Jetpack Navigation Compose untuk berpindah antara `HomeScreen` (menampilkan daftar menggunakan `LazyColumn`) dan `AnimeDetailScreen`.
+*   **Kotlin Features**: Memanfaatkan fungsionalitas modern Kotlin seperti Lambda expressions untuk navigasi dan *Collection* untuk memanipulasi list data.
+*   **No Image Loading**: Sesuai dengan instruksi, aplikasi ini hanya berfokus pada data teks, sehingga tidak membebani aplikasi dengan library pemuatan gambar tambahan.
