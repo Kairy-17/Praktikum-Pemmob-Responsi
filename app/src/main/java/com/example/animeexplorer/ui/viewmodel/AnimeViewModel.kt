@@ -28,7 +28,7 @@ class AnimeViewModel(private val repository: AnimeRepository) : ViewModel() {
             try {
                 val animeList = repository.getAnimeList()
                 // Example of Collection Operations: Sort by rating descending
-                val sortedList = animeList.sortedByDescending { it.rating }
+                val sortedList = animeList.sortedByDescending { it.rating ?: 0.0 }
                 _listUiState.value = AnimeListUiState.Success(sortedList)
             } catch (e: Exception) {
                 _listUiState.value = AnimeListUiState.Error(e.message ?: "An unknown error occurred")

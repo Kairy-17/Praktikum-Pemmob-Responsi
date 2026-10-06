@@ -28,7 +28,7 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Anime Explorer") },
+                title = { Text("Eksplorasi Anime") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -49,10 +49,10 @@ fun HomeScreen(
                 is AnimeListUiState.Error -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(text = "Error: ${state.message}", color = MaterialTheme.colorScheme.error)
+                            Text(text = "Terjadi Kesalahan: ${state.message}", color = MaterialTheme.colorScheme.error)
                             Spacer(modifier = Modifier.height(8.dp))
                             Button(onClick = { viewModel.fetchAnimeList() }) {
-                                Text("Retry")
+                                Text("Coba Lagi")
                             }
                         }
                     }
@@ -69,7 +69,7 @@ fun AnimeList(animeList: List<Anime>, onAnimeClick: (String) -> Unit) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(animeList, key = { it.id }) { anime ->
-            AnimeCard(anime = anime, onClick = { onAnimeClick(anime.id) })
+            AnimeCard(anime = anime, onClick = { onAnimeClick(anime.id.toString()) })
         }
     }
 }
@@ -85,9 +85,9 @@ fun AnimeCard(anime: Anime, onClick: () -> Unit) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = anime.title, style = MaterialTheme.typography.titleLarge)
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "Rating: ${anime.rating}", style = MaterialTheme.typography.bodyMedium)
-            Text(text = "Year: ${anime.releaseYear}", style = MaterialTheme.typography.bodyMedium)
-            Text(text = "Episodes: ${anime.episodes}", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Rating: ${anime.rating ?: "-"}", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Tahun Rilis: ${anime.releaseYear ?: "-"}", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Jumlah Episode: ${anime.episodes ?: "-"}", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }

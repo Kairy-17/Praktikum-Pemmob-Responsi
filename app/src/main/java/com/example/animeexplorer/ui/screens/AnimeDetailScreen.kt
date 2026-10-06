@@ -28,7 +28,7 @@ fun AnimeDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Anime Detail") },
+                title = { Text("Detail Anime") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Text(text = "<-")
@@ -52,14 +52,14 @@ fun AnimeDetailScreen(
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(text = state.data.title, style = MaterialTheme.typography.headlineMedium)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "Rating: ${state.data.rating}", style = MaterialTheme.typography.titleMedium)
-                        Text(text = "Year: ${state.data.releaseYear}", style = MaterialTheme.typography.titleMedium)
-                        Text(text = "Episodes: ${state.data.episodes}", style = MaterialTheme.typography.titleMedium)
+                        Text(text = "Rating: ${state.data.rating ?: "-"}", style = MaterialTheme.typography.titleMedium)
+                        Text(text = "Tahun Rilis: ${state.data.releaseYear ?: "-"}", style = MaterialTheme.typography.titleMedium)
+                        Text(text = "Jumlah Episode: ${state.data.episodes ?: "-"}", style = MaterialTheme.typography.titleMedium)
                         Spacer(modifier = Modifier.height(16.dp))
-                        Text(text = "Synopsis", style = MaterialTheme.typography.titleLarge)
+                        Text(text = "Sinopsis", style = MaterialTheme.typography.titleLarge)
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = state.data.synopsis ?: "No synopsis available.",
+                            text = state.data.synopsis ?: "Sinopsis tidak tersedia.",
                             style = MaterialTheme.typography.bodyLarge
                         )
                     }
@@ -67,10 +67,10 @@ fun AnimeDetailScreen(
                 is AnimeDetailUiState.Error -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(text = "Error: ${state.message}", color = MaterialTheme.colorScheme.error)
+                            Text(text = "Terjadi Kesalahan: ${state.message}", color = MaterialTheme.colorScheme.error)
                             Spacer(modifier = Modifier.height(8.dp))
                             Button(onClick = { viewModel.fetchAnimeDetail(animeId) }) {
-                                Text("Retry")
+                                Text("Coba Lagi")
                             }
                         }
                     }
