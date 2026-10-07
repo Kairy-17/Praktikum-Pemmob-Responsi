@@ -3,10 +3,9 @@
 Aplikasi ini berfungsi untuk mencari dan menampilkan informasi anime secara dinamis dari REST API.
 
 ## 📸 Screenshots
-*(Ganti URL gambar di bawah ini dengan link screenshot aplikasi kamu yang sudah diupload)*
 | Home Screen | Anime Detail Screen |
 |:---:|:---:|
-| ![Home](link-screenshot-home.png) | ![Detail](link-screenshot-detail.png) |
+| ![Home](screenshot/home.png) | ![Detail](screenshot/detail.png) |
 
 ## 🛠️ Penjelasan Teknis
 
