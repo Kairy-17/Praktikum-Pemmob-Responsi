@@ -5,7 +5,7 @@ Aplikasi ini berfungsi untuk mencari dan menampilkan informasi anime secara dina
 ## 📸 Screenshots
 | Home Screen | Anime Detail Screen |
 |:---:|:---:|
-| ![Home](screenshot/home.png) | ![Detail](screenshot/detail.png) |
+| ![Home](screenshots/home.png) | ![Detail](screenshots/detail.png) |
 
 ## 🛠️ Penjelasan Teknis
 
