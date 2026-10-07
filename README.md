@@ -1,6 +1,6 @@
 # Aplikasi Eksplorasi Anime
 
-Aplikasi mobile sederhana yang dibangun untuk memenuhi tugas responsi. Aplikasi ini berfungsi untuk mencari dan menampilkan informasi anime secara dinamis dari REST API.
+Aplikasi ini berfungsi untuk mencari dan menampilkan informasi anime secara dinamis dari REST API.
 
 ## 📸 Screenshots
 *(Ganti URL gambar di bawah ini dengan link screenshot aplikasi kamu yang sudah diupload)*
